@@ -1,0 +1,112 @@
+<!doctype html>
+ <html lang="en">
+<head>
+  <button id="langToggle" class="lang-btn" type="button">ES</button>
+
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Barbería Titan</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<script>
+  const dict = {
+    en: {
+      heroTitle: "TITAN BARBERSHOP",
+      heroSub: "Modern cuts. Clean style. Sharp presence.",
+      ctaPrimary: "Book Appointment",
+      ctaSecondary: "View Services"
+    },
+    es: {
+      heroTitle: "TITAN BARBERSHOP",
+      heroSub: "Cortes modernos. Estilo limpio. Presencia con clase.",
+      ctaPrimary: "Reservar cita",
+      ctaSecondary: "Ver servicios"
+    }
+  };
+
+  let lang = "en";
+
+  function applyLang() {
+    document.querySelectorAll("[data-i18n]").forEach(el => {
+      const key = el.getAttribute("data-i18n");
+      if (dict[lang][key]) el.textContent = dict[lang][key];
+    });
+
+    const btn = document.getElementById("langToggle");
+    if (btn) btn.textContent = (lang === "en") ? "ES" : "EN";
+  }
+
+  document.getElementById("langToggle").addEventListener("click", () => {
+    lang = (lang === "en") ? "es" : "en";
+    localStorage.setItem("lang", lang);
+    applyLang();
+  });
+
+  lang = localStorage.getItem("lang") || "en";
+  applyLang();
+</script>
+
+<body>
+  <div class="container">
+
+    <header class="hero">
+  <div class="hero-content">
+      <h1 data-i18n="heroTitle" class="hero-title">
+  TITAN BARBERSHOP
+</h1>
+
+<p data-i18n="heroSub" class="hero-sub">
+  Precision. Style. Presence.
+</p>
+
+<div class="hero-buttons">
+  <a href="#contacto" class="btn-primary" data-i18n="ctaPrimary">
+    Book Appointment
+  </a>
+
+  <a href="#servicios" class="btn-ghost" data-i18n="ctaSecondary">View Services</a>
+  </div>
+    </header>
+
+
+    <section>
+      <h2>Services</h2>
+<ul>
+  <li>Classic Haircut</li>
+  <li>Fade / Taper</li>
+  <li>Beard Trim & Shaping</li>
+  <li>Eyebrow & Detail Work</li>
+</ul>
+    </section>
+    <section>
+   <h2>Recent Work</h2>
+
+  <div class="gallery">
+    <img src="https://images.unsplash.com/photo-1585747860715-2ba37e788b70?w=500" alt="Corte moderno">
+    <img src="https://images.unsplash.com/photo-1605497788044-5a32c7078486?w=500" alt="Barba perfilada">
+    <img src="https://images.unsplash.com/photo-1599351431202-1e0f0137899a?w=500" alt="Fade clásico">
+  </div>
+</section>
+
+
+    <section>
+       <h2>Location & Hours</h2>
+       <p>📍 Los Angeles, CA (example)</p>
+       <p>🕒 Mon–Sat: 9am–7pm • Sun: Closed</p>
+    </section>
+
+    <section id="contacto">
+       <h2>Contact</h2>
+       <p>📞 (555) 123-4567</p>
+       <p>✉️ titanbarbershop@email.com</p>
+       <a class="btn secondary" href="tel:5551234567">Call Now</a>
+    </section>
+
+    <footer class="footer">
+       <p>© 2026 Titan Barbershop. All rights reserved.</p>
+    </footer>
+
+  </div>
+</body>
+</html>
